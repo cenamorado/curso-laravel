@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,15 +13,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-    try {
-        Db::connection()-getPdo();
-    } catch (\ Exception $e) {
-       die("No se conecto ni porra perrin");
-    }
-});
+    return view('home');
+})->name('home');
+Route::get('about', function () {
+     return view('about');
+})->name('about');
 
-Route::get('/view', function () {
-    $array = [1,2,3,4,5,6];
-    return view('view',compact("array"));
-});
+Route::get('portfolio','PortfolioController@index')->name('portfolio');
+
+Route::view('contacto', 'contact')->name('contacto');
+Route::post('contacto','ContactController@store');
